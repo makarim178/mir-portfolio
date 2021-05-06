@@ -13,7 +13,12 @@ const {
   PROJECT_ID,
   STORAGE_BUCKET,
   MESSAGING_SENDER_ID,
-  APP_ID
+  APP_ID,
+  CLIENT_ID,
+  CLIENT_SECRET,
+  ACCESS_TOKEN,
+  MAILJET_API_KEY,
+  MAILJET_SECRET_KEY
 } = process.env;
 
 assert(PORT, 'PORT is required');
@@ -31,5 +36,14 @@ module.exports = {
     storageBucket: STORAGE_BUCKET,
     messagingSenderId: MESSAGING_SENDER_ID,
     appId: APP_ID
+  },
+  nylasConfig: {
+    clientId: CLIENT_ID,
+    clientSecret: CLIENT_SECRET,
+    accessToken: ACCESS_TOKEN,
+  }, 
+  mailjetConfig : {
+    apiKey: MAILJET_API_KEY,
+    secretKey: MAILJET_SECRET_KEY,
   }
 }

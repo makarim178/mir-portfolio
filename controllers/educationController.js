@@ -26,6 +26,7 @@ const getCourses = async(req, res, next) => {
             const cor = {
                 id: course.id,
                 courseName: course.data().courseName,
+                desc: course.data().desc,
                 educationId: course.data().educationId,
                 grade: course.data().grade
             }
@@ -47,6 +48,31 @@ const getCourse = async(req,res,next) => {
             res.status(400).send('No Data Found');
         } else {
             res.send(data.data());
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
+const getCoursesByEduId = async(req, res, next) => {
+    try {
+        const id = req.params.id;
+        const courses = firestore.collection('courses');
+        
+        const query = await courses.where('educationId', '==', id).get().then((snapshot) => {
+            const coursesById = [];
+            snapshot.docs.forEach(doc => {
+                coursesById.push(doc.data());
+            });
+            
+            // console.log(coursesById);
+            return coursesById;
+        });
+        
+        if(!query.exists == 0){
+            res.status(400).send('No Data Found!');
+        } else {
+            res.send(query);
         }
     } catch (error) {
         res.status(400).send(error.message);
@@ -81,5 +107,6 @@ module.exports = {
     updateCourses,
     getCourses,
     removeCourse,
-    getCourse
+    getCourse,
+    getCoursesByEduId
 }

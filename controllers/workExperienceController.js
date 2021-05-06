@@ -19,18 +19,36 @@ const getWEs = async(req, res, next) => {
         const we = await firestore.collection('workExperiences');
         const data = await we.get();
         const wes = [];
-
+        
+        
+        
+        
         data.forEach(doc => {
+            
+            let count = 1;
+            const jobDescs = [];
+            
+            doc.data().jobDesc.forEach(jd => {
+                const jds = {
+                    id: count++,
+                    jobDesc: jd
+                }
+
+                jobDescs.push(jds);
+            });
+
             const work = {
-                id: doc.id,
-                jobTitle: doc.data().jobTitle,
+                id: doc.data().id,
+                jobTitle: doc.data().title,
                 companyName: doc.data().companyName,
                 companyLocation: doc.data().companyLocation,
                 url: doc.data().url,
-                jobDescs: doc.data().jobDesc,
+                jobDescs: jobDescs,
                 yearStarted: doc.data().yearStarted,
                 yearEnded: doc.data().yearEnded
             }
+
+            
             wes.push(work);
         });
 

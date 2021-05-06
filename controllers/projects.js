@@ -18,14 +18,53 @@ const getProjects = async( req, res, next) => {
         const projects = [];
 
         data.forEach(doc => {
+            const ius = [];
+            const ts = [];
+            const vus = [];
+            let count = 1;
+
+            doc.data().imageUrls.forEach(el => {
+                const iu = {
+                    id: count++,
+                    imageUrl: el
+                }
+                ius.push(iu);
+            });
+
+            count = 1;
+
+            doc.data().tools.forEach(el => {
+                const tls = {
+                    id: count++,
+                    tool: el
+                };
+
+                ts.push(tls);
+            })
+
+            count = 1;
+
+            doc.data().videoUrls.forEach(el => {
+
+                const vs = {
+                    id: count++,
+                    videoUrl: el
+                };
+
+                vus.push(vs);
+            });
+
             const proj = {
-                id: doc.id,
-                categoryName: doc.data().categoryName,
+                id: doc.data().id,
+                title: doc.data().title,
+                mainImage: doc.data().mainImage,
                 desc: doc.data().desc,
-                thumbnailImageUrl: doc.data().thumbnailImageUrl,
+                category: doc.data().category,
                 imageUrls: doc.data().imageUrls,
-                projectLinks: doc.data().projectLinks,
-                skills: doc.data().skills
+                siteUrl: ius,
+                projectUrl: doc.data().projectUrl,
+                tools: ts,
+                videoUrls: vus
             }
             projects.push(proj);
         });

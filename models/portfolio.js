@@ -1,6 +1,6 @@
 class Portfolio {
     constructor(id, firstName, lastName, initialName, logo, title, subTitle
-        , titleImageUrl, resumeLink, aboutImgUrl, aboutDesc, location
+        , titleImageUrl, resumeLink, aboutImgUrl, adjectiveWords, aboutDesc, location
         , email, phone, links) {
         this.id = id;
         this.firstName = firstName;
@@ -12,6 +12,7 @@ class Portfolio {
         this.titleImageUrl  = titleImageUrl;
         this.resumeLink = resumeLink;
         this.aboutImgUrl = aboutImgUrl;
+        this.adjectiveWords = adjectiveWords;
         this.aboutDesc = aboutDesc;
         this.location = location;
         this.email = email;

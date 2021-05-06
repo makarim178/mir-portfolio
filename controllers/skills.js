@@ -23,7 +23,8 @@ const getSkills = async(req, res, next) => {
             const skill = {
                 id: doc.id,
                 skillName: doc.data().skillName,
-                skillImageUrl: doc.data().skillImageUrl
+                skillImageUrl: doc.data().skillImageUrl,
+                category: doc.data().category
             }
 
             skills.push(skill);
