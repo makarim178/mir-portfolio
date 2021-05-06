@@ -14,4 +14,4 @@ app.use(bodyParser.json());
 
 app.use('/api', portfolioRoutes.routes);
 
-app.listen(config.port, () => console.log(`App is running on url http://localhost:${config.port}`))
+app.listen(process.env.PORT || config.port, () => console.log(`App is running on url http://localhost:${process.env.PORT}`));
