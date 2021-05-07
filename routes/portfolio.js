@@ -5,6 +5,7 @@ const { addProject, getProjects, getProject, updateProject, removeProject } = re
 const { addSkills, getSkills, getSKill, updateSkill, removeSkill } = require('../controllers/skills');
 const { addWE, getWEs, updateWe, removeWe, getWeById } = require('../controllers/workExperienceController');
 const { sendEmail } = require('../controllers/contact');
+const { addLinks, getLinks, getLink, updateLink, removeLink } = require('../controllers/links');
 
 
 const router =  express.Router();
@@ -54,6 +55,13 @@ router.delete('/project/:id', removeProject);
 
 // send e-mail
 router.post('/contact', sendEmail);
+
+// Links
+router.post('/links', addLinks);
+router.get('/links', getLinks);
+router.get('/link/:id', getLink);
+router.put('/link/:id', updateLink);
+router.delete('/link/:id', removeLink);
 
 module.exports = {
     routes: router
