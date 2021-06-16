@@ -15,6 +15,8 @@ const getProjects = async( req, res, next) => {
     try {
         const projRef = await firestore.collection('projects');
         const data = await projRef.get();
+
+        //console.log(data);
         const projects = [];
 
         data.forEach(doc => {
@@ -61,8 +63,9 @@ const getProjects = async( req, res, next) => {
                 desc: doc.data().desc,
                 category: doc.data().category,
                 imageUrls: doc.data().imageUrls,
-                siteUrl: ius,
+                siteUrl: doc.data().siteLink,
                 projectUrl: doc.data().projectUrl,
+                prototypeLink: doc.data().prototypeLink,
                 tools: ts,
                 videoUrls: vus
             }
