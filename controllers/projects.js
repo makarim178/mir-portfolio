@@ -25,6 +25,8 @@ const getProjects = async( req, res, next) => {
             const vus = [];
             let count = 1;
 
+            //console.log(doc.data());
+
             doc.data().imageUrls.forEach(el => {
                 const iu = {
                     id: count++,
@@ -66,9 +68,12 @@ const getProjects = async( req, res, next) => {
                 siteUrl: doc.data().siteLink,
                 projectUrl: doc.data().projectUrl,
                 prototypeLink: doc.data().prototypeLink,
+                pdfPresentationLink: doc.data().pdfPresentationLink,
+                presentationThumbnail: doc.data().presentationThumnail,
                 tools: ts,
                 videoUrls: vus
             }
+            //console.log(proj);
             projects.push(proj);
         });
         
