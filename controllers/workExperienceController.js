@@ -48,8 +48,8 @@ const getWEs = async(req, res, next) => {
                 yearEnded: doc.data().yearEnded
             }
 
-            
-            wes.push(work);
+            //wes.push(work.sort);
+            wes.push(work.sort((a,b) => a['id'] > b['id'] ? 1 : -1));
         });
 
         res.send(wes);
