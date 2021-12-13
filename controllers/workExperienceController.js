@@ -49,7 +49,7 @@ const getWEs = async(req, res, next) => {
             }
 
             //wes.push(work.sort);
-            wes.push(work.sort((a,b) => a['id'] > b['id'] ? 1 : -1));
+            wes.push(work.sort((a,b) => a.id > b.id ? 1 : -1));
         });
 
         res.send(wes);
